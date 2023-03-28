@@ -4,6 +4,10 @@
 #include <windows.h>
 #include <string>
 using namespace std;
+void color1(int color1)
+{
+  SetConsoleTextAttribute(GetStdHandle(STD_OUTPUT_HANDLE), color1);
+}
 void menu();
 bool signup(string name, string password, string role);
 string signin(string name, string password);
@@ -105,8 +109,10 @@ main()
       string name;
       string role;
       menu();
+      color1(1);
       cout << "Enter the username : ";
       getline(cin >> ws, name);
+      color1(2);
       cout << "Enter the password : ";
       cin >> password;
       role = signin(name, password);
@@ -130,6 +136,7 @@ main()
       }
       else if (role == "Undefined")
       {
+        color1(3);
         cout << "You have Entered Wrong id and password ! " << endl;
       }
     }
@@ -140,16 +147,20 @@ main()
       string name;
       string role = "Admin";
       menu();
+      color1(4);
       cout << "Enter the username : ";
       cin >> name;
+      color1(5);
       cout << "Enter the password : ";
       cin >> password;
       while (role == "Admin")
       {
+        color1(6);
         cout << "Enter your role (Employe or Customer) : ";
         cin >> role;
         if (role == "Admin")
         {
+          color1(7);
           cout << "......You cannot signup as an Admin...." << endl;
           cout << "......Please Try Again................." << endl;
         }
@@ -157,10 +168,12 @@ main()
       bool isValid = signup(name, password, role);
       if (isValid)
       {
+        color1(9);
         cout << "Sign up Successfully" << endl;
       }
       if (!(isValid))
       {
+        color1(8);
         cout << " ................User Already Present............ " << endl;
       }
     }
@@ -169,27 +182,29 @@ main()
 }
 void menu()
 {
-  int k = 5;
-  HANDLE hConsole = GetStdHandle(STD_OUTPUT_HANDLE);
-  SetConsoleTextAttribute(hConsole, k);
   cout << endl
        << endl
        << endl;
+  color1(9);
   cout << "**************************************************************************************" << endl;
   cout << endl;
+  color1(2);
   cout << "                       PHARMACY     MANAGEMENT      SYSTEM" << endl;
   cout << endl;
+  color1(7);
   cout << "**************************************************************************************" << endl;
 }
 void pharmacyPrint()
 {
   system("cls");
+  color1(7);
   cout << "                         ___________  " << endl;
   cout << "                        [___________]     " << endl;
   cout << "                         {=========}     " << endl;
   cout << "                       .-'         '-.     " << endl;
   cout << "                      /               \\\\     " << endl;
   cout << "                     /_________________\\     " << endl;
+  color1(3);
   cout << "                     |   _  _   _      |     " << endl;
   cout << "                     ||\\(_ |_)||_)||\\ ||     " << endl;
   cout << "    ,.--.   ,.--.    ||~\\_)|  || \\|| \\||     " << endl;
@@ -197,6 +212,7 @@ void pharmacyPrint()
   cout << "   \\\\  \\ / \\\\  \\ /   |                 |     " << endl;
   cout << "    `'--'   `'--'    '-----------------'     " << endl;
   cout << endl;
+  color1(6);
   cout << "                                                             I--------------I   " << endl;
   cout << "                                                             I--------------I    " << endl;
   cout << "                                                            .-'             '-.   " << endl;
@@ -207,6 +223,7 @@ void pharmacyPrint()
   cout << "                                                          |                    | " << endl;
   cout << "                                                          |  VERBAL-DIARRHOEA  | " << endl;
   cout << "                                                          |                    | " << endl;
+  color1(9);
   cout << "                                                          |     MEDICINE       | " << endl;
   cout << "                                                          |                    | " << endl;
   cout << "                                                          | [ Pharmacy Only ]  | " << endl;
@@ -216,21 +233,20 @@ void pharmacyPrint()
   cout << "                                                          '--------------------' " << endl;
   cout << endl
        << endl;
-
+  color1(8);
   cout << "                                  ..................WELCOME TO OUR PHARMACY................" << endl;
   getch();
 }
 void logo()
 {
-  int k = 1;
-  HANDLE hConsole = GetStdHandle(STD_OUTPUT_HANDLE);
-  SetConsoleTextAttribute(hConsole, k);
+  color1(7);
   system("cls");
   cout << "            /$$                                                                                                             /$$                            " << endl;
   cout << "           | $$                                                                                                            | $$                             " << endl;
   cout << "   /$$$$$$ | $$$$$$$   /$$$$$$   /$$$$$$  /$$$$$$/$$$$   /$$$$$$   /$$$$$$$ /$$   /$$        /$$$$$$$ /$$   /$$  /$$$$$$$ /$$$$$$    /$$$$$$  /$$$$$$/$$$$  " << endl;
   cout << "  /$$__  $$| $$__  $$ |____  $$ /$$__  $$| $$_  $$_  $$ |____  $$ /$$_____/| $$  | $$       /$$_____/| $$  | $$ /$$_____/|_  $$_/   /$$__  $$| $$_  $$_  $$ " << endl;
   cout << " | $$  \\ $$| $$  \\ $$  /$$$$$$$| $$  \\__/| $$ \\ $$ \\ $$  /$$$$$$$| $$      | $$  | $$      |  $$$$$$ | $$  | $$|  $$$$$$   | $$    | $$$$$$$$| $$ \\ $$ \\ $$ " << endl;
+  color1(1);
   cout << " | $$  | $$| $$  | $$ /$$__  $$| $$      | $$ | $$ | $$ /$$__  $$| $$      | $$  | $$       \\____  $$| $$  | $$ \\____  $$  | $$ /$$| $$_____/| $$ | $$ | $$ " << endl;
   cout << " | $$$$$$$/| $$  | $$|  $$$$$$$| $$      | $$ | $$ | $$|  $$$$$$$|  $$$$$$$|  $$$$$$$       /$$$$$$$/|  $$$$$$$ /$$$$$$$/  |  $$$$/|  $$$$$$$| $$ | $$ | $$ " << endl;
   cout << " | $$____/ |__/  |__/ \\_______/|__/      |__/ |__/ |__/ \\_______/ \\_______/ \\____  $$      |_______/  \\____  $$|_______/    \\___/   \\_______/|__/ |__/ |__/ " << endl;
@@ -245,24 +261,29 @@ void logo()
 }
 void menuAdmin()
 {
+  color1(2);
   cout << "                             $$$$$$\\        $$\\               $$\\                 $$\\      $$\\                                       " << endl;
   cout << "                            $$  __$$\\       $$ |              \\__|                $$$\\    $$$ |                                      " << endl;
   cout << "                            $$ /  $$ | $$$$$$$ |$$$$$$\\$$$$\\  $$\\ $$$$$$$\\        $$$$\\  $$$$ | $$$$$$\\  $$$$$$$\\  $$\\   $$\\         " << endl;
   cout << "                            $$$$$$$$ |$$  __$$ |$$  _$$  _$$\\ $$ |$$  __$$\\       $$\\$$\\$$ $$ |$$  __$$\\ $$  __$$\\ $$ |  $$ |        " << endl;
   cout << "                            $$  __$$ |$$ /  $$ |$$ / $$ / $$ |$$ |$$ |  $$ |      $$ \\$$$  $$ |$$$$$$$$ |$$ |  $$ |$$ |  $$ |        " << endl;
+  color1(1);
   cout << "                            $$ |  $$ |$$ |  $$ |$$ | $$ | $$ |$$ |$$ |  $$ |      $$ |\\$  /$$ |$$   ____|$$ |  $$ |$$ |  $$ |        " << endl;
   cout << "                            $$ |  $$ |\\$$$$$$$ |$$ | $$ | $$ |$$ |$$ |  $$ |      $$ | \\_/ $$ |\\$$$$$$$\\ $$ |  $$ |\\$$$$$$  |        " << endl;
   cout << "                            \\__|  \\__| \\_______|\\__| \\__| \\__|\\__|\\__|  \\__|      \\__|     \\__| \\_______|\\__|  \\__| \\______/         " << endl;
   cout << endl;
+  color1(9);
   cout << "************************************************************************************************************************************************************************       " << endl;
 }
 void menuEmploye()
 {
+  color1(2);
   cout << "              $$$$$$$$\\                         $$\\                                     $$\\      $$\\                                 " << endl;
   cout << "             $$  _____|                        $$ |                                    $$$\\    $$$ |                                 " << endl;
   cout << "             $$ |      $$$$$$\\$$$$\\   $$$$$$\\  $$ | $$$$$$\\  $$\\   $$\\  $$$$$$\\        $$$$\\  $$$$ | $$$$$$\\  $$$$$$$\\  $$\\   $$\\    " << endl;
   cout << "             $$$$$\\    $$  _$$  _$$\\ $$  __$$\\ $$ |$$  __$$\\ $$ |  $$ |$$  __$$\\       $$\\$$\\$$ $$ |$$  __$$\\ $$  __$$\\ $$ |  $$ |   " << endl;
   cout << "             $$  __|   $$ / $$ / $$ |$$ /  $$ |$$ |$$ /  $$ |$$ |  $$ |$$$$$$$$ |      $$ \\$$$  $$ |$$$$$$$$ |$$ |  $$ |$$ |  $$ |   " << endl;
+  color1(1);
   cout << "             $$ |      $$ | $$ | $$ |$$ |  $$ |$$ |$$ |  $$ |$$ |  $$ |$$   ____|      $$ |\\$  /$$ |$$   ____|$$ |  $$ |$$ |  $$ |   " << endl;
   cout << "             $$$$$$$$\\ $$ | $$ | $$ |$$$$$$$  |$$ |\\$$$$$$  |\\$$$$$$$ |\\$$$$$$$\\       $$ | \\_/ $$ |\\$$$$$$$\\ $$ |  $$ |\\$$$$$$  |   " << endl;
   cout << "             \\________|\\__| \\__| \\__|$$  ____/ \\__| \\______/  \\____$$ | \\_______|      \\__|     \\__| \\_______|\\__|  \\__| \\______/    " << endl;
@@ -270,24 +291,29 @@ void menuEmploye()
   cout << "                                     $$ |                    \\$$$$$$  |                                                              " << endl;
   cout << "                                     \\__|                     \\______/                                                               " << endl;
   cout << endl;
+  color1(9);
   cout << "************************************************************************************************************************************************************************       " << endl;
 }
 void menuCustomer()
 {
-  cout << "   $$$$$$\\                        $$\\                                                       $$\\      $$\\                                " << endl;
-  cout << "  $$  __$$\\                       $$ |                                                      $$$\\    $$$ |                               " << endl;
-  cout << "  $$ /  \\__|$$\\   $$\\  $$$$$$$\\ $$$$$$\\    $$$$$$\\  $$$$$$\\$$$$\\   $$$$$$\\   $$$$$$\\        $$$$\\  $$$$ | $$$$$$\\  $$$$$$$\\  $$\\   $$\\  " << endl;
-  cout << "  $$ |      $$ |  $$ |$$  _____|\\_$$  _|  $$  __$$\\ $$  _$$  _$$\\ $$  __$$\\ $$  __$$\\       $$\\$$\\$$ $$ |$$  __$$\\ $$  __$$\\ $$ |  $$ | " << endl;
-  cout << "  $$ |      $$ |  $$ |\\$$$$$$\\    $$ |    $$ /  $$ |$$ / $$ / $$ |$$$$$$$$ |$$ |  \\__|      $$ \\$$$  $$ |$$$$$$$$ |$$ |  $$ |$$ |  $$ | " << endl;
-  cout << "  $$ |  $$\\ $$ |  $$ | \\____$$\\   $$ |$$\\ $$ |  $$ |$$ | $$ | $$ |$$   ____|$$ |            $$ |\\$  /$$ |$$   ____|$$ |  $$ |$$ |  $$ | " << endl;
-  cout << "  \\$$$$$$  |\\$$$$$$  |$$$$$$$  |  \\$$$$  |\\$$$$$$  |$$ | $$ | $$ |\\$$$$$$$\\ $$ |            $$ | \\_/ $$ |\\$$$$$$$\\ $$ |  $$ |\\$$$$$$  | " << endl;
-  cout << "   \\______/  \\______/ \\_______/    \\____/  \\______/ \\__| \\__| \\__| \\_______|\\__|            \\__|     \\__| \\_______|\\__|  \\__|  \\______/  " << endl;
+  color1(2);
+  cout << "\t\t   $$$$$$\\                        $$\\                                                       $$\\      $$\\                                " << endl;
+  cout << "\t\t  $$  __$$\\                       $$ |                                                      $$$\\    $$$ |                               " << endl;
+  cout << "\t\t  $$ /  \\__|$$\\   $$\\  $$$$$$$\\ $$$$$$\\    $$$$$$\\  $$$$$$\\$$$$\\   $$$$$$\\   $$$$$$\\        $$$$\\  $$$$ | $$$$$$\\  $$$$$$$\\  $$\\   $$\\  " << endl;
+  cout << "\t\t  $$ |      $$ |  $$ |$$  _____|\\_$$  _|  $$  __$$\\ $$  _$$  _$$\\ $$  __$$\\ $$  __$$\\       $$\\$$\\$$ $$ |$$  __$$\\ $$  __$$\\ $$ |  $$ | " << endl;
+  color1(1);
+  cout << " \t\t  $$ |      $$ |  $$ |\\$$$$$$\\    $$ |    $$ /  $$ |$$ / $$ / $$ |$$$$$$$$ |$$ |  \\__|      $$ \\$$$  $$ |$$$$$$$$ |$$ |  $$ |$$ |  $$ | " << endl;
+  cout << " \t\t  $$ |  $$\\ $$ |  $$ | \\____$$\\   $$ |$$\\ $$ |  $$ |$$ | $$ | $$ |$$   ____|$$ |            $$ |\\$  /$$ |$$   ____|$$ |  $$ |$$ |  $$ | " << endl;
+  cout << " \t\t  \\$$$$$$  |\\$$$$$$  |$$$$$$$  |  \\$$$$  |\\$$$$$$  |$$ | $$ | $$ |\\$$$$$$$\\ $$ |            $$ | \\_/ $$ |\\$$$$$$$\\ $$ |  $$ |\\$$$$$$  | " << endl;
+  cout << " \t\t   \\______/  \\______/ \\_______/    \\____/  \\______/ \\__| \\__| \\__| \\_______|\\__|            \\__|     \\__| \\_______|\\__|  \\__|  \\______/  " << endl;
   cout << endl;
+  color1(9);
   cout << "************************************************************************************************************************************************************************       " << endl;
 }
 
 int menuOption()
 {
+  color1(6);
   cout << "\t\t\t Signup " << endl;
   cout << "\t\t\t Signin " << endl;
   cout << "\t\t\t Exit " << endl;
@@ -299,22 +325,22 @@ int adminMenu()
 {
   system("cls");
   menuAdmin();
-  int k = 6;
-  HANDLE hConsole = GetStdHandle(STD_OUTPUT_HANDLE);
-  SetConsoleTextAttribute(hConsole, k);
   cout << endl
        << endl
        << endl
        << endl
        << endl;
+  color1(6);
   cout << "\t\t\t Mark Attendence " << endl;
   cout << "\t\t\t Bills Management " << endl;
   cout << "\t\t\t Add medicine stock " << endl;
   cout << "\t\t\t Remove medicine " << endl;
+  color1(3);
   cout << "\t\t\t View stock " << endl;
   cout << "\t\t\t Add Employe and Admin " << endl;
   cout << "\t\t\t view staffs " << endl;
   cout << "\t\t\t Check Feedback " << endl;
+  color1(9);
   cout << "\t\t\t Check Attendence " << endl;
   cout << "\t\t\t Exit " << endl;
   int option = navigation(10);
@@ -341,6 +367,7 @@ bool signup(string name, string password, string role)
   if (isPresent == true)
   {
     return 0;
+    color1(7);
     cout << " User Already exit! please Enter a new one.... " << endl;
   }
   else if (userCount < arrsize)
@@ -381,14 +408,13 @@ string signin(string name, string password)
 int employMenu()
 {
   menuEmploye();
-  int k = 6;
-  HANDLE hConsole = GetStdHandle(STD_OUTPUT_HANDLE);
-  SetConsoleTextAttribute(hConsole, k);
   cout << endl
        << endl;
+  color1(2);
   cout << "\t\t\t Bill for customer " << endl;
   cout << "\t\t\t View medicine stock " << endl;
   cout << "\t\t\t Change Password " << endl;
+  color1(9);
   cout << "\t\t\t Request medicine " << endl;
   cout << "\t\t\t Daily report " << endl;
   cout << "\t\t\t Exit " << endl;
@@ -398,14 +424,12 @@ int employMenu()
 int customerMenu()
 {
   menuCustomer();
-  int k = 6;
-  HANDLE hConsole = GetStdHandle(STD_OUTPUT_HANDLE);
-  SetConsoleTextAttribute(hConsole, k);
   cout << endl
        << endl
        << endl
        << endl
        << endl;
+  color1(7);
   cout << "\t\t\t Enter the medicine " << endl;
   cout << "\t\t\t Claim his bill " << endl;
   cout << "\t\t\t Give Feedback " << endl;
@@ -472,6 +496,7 @@ void adminInterface()
     }
     if (option > 10)
     {
+      color1(6);
       cout << "Please enter the valid option......." << endl;
       getch();
       system("cls");
@@ -481,8 +506,6 @@ void adminInterface()
     {
       chkfeedback();
     }
-    // cout << "Press any key to continue...";
-    // getch();
   }
 }
 void employeInterface()
@@ -521,6 +544,7 @@ void employeInterface()
     }
     if (option > 6)
     {
+  color1(6);
       cout << "Please enter the valid option.......";
     }
     if (option == 6)
@@ -572,13 +596,16 @@ void addMedicine()
 {
   string temp, temp1;
   int values;
+  color1(5);
   cout << "Enter the medicine you want to add : ";
   cin >> temp1;
   while (!(stringValidation(temp1)))
   {
+  color1(4);
     cout << "Invalid,try Again." << endl;
     cin >> temp1;
   }
+  color1(4);
   cout << "Enter the quantity of adding medicine : ";
   cin >> temp;
   while (!(validation(temp)))
@@ -595,13 +622,16 @@ void addMedicine()
 }
 void viewInventory()
 {
+  color1(9);
   system("cls");
   menu();
   gotoxy(6, 12);
   cout << "No";
   gotoxy(36, 12);
+  color1(3);
   cout << "Medicine";
   gotoxy(66, 12);
+  color1(2);
   cout << "Quantity";
   for (int i = 0; i < index; i++)
   {
@@ -619,17 +649,20 @@ void viewInventory()
 }
 void addStaff()
 {
+  color1(7);
   string temp1;
   cout << "Enter the name : ";
   cin >> temp1;
-   while (!(stringValidation(temp1)))
+  while (!(stringValidation(temp1)))
   {
     cout << "Invalid,try Again." << endl;
     cin >> temp1;
   }
   username[userCount] = temp1;
+  color1(2);
   cout << "Enter the password : ";
   cin >> passwards[userCount];
+  color1(1);
   cout << "Enter the role : ";
   cin >> roles[userCount];
   userCount++;
@@ -653,10 +686,13 @@ void viewStaff()
   system("cls");
   menu();
   gotoxy(6, 12);
+  color1(5);
   cout << "UserName";
   gotoxy(36, 12);
+  color1(3);
   cout << "Passwords";
   gotoxy(66, 12);
+  color1(8);
   cout << "Role";
   for (int i = 0; i < userCount; i++)
   {
@@ -675,6 +711,7 @@ void removeMedicine()
 {
   string temp1;
   string remove;
+  color1(3);
   cout << "...............Available Medicines...................... " << endl;
   for (int i = 0; i < index; i++)
   {
@@ -682,9 +719,10 @@ void removeMedicine()
          << "\t" << medicine[i] << "\t"
          << quantity[i] << "\t" << endl;
   }
+  color1(6);
   cout << "Enter the medicine you want to remove : ";
   cin >> temp1;
-   while (!(stringValidation(temp1)))
+  while (!(stringValidation(temp1)))
   {
     cout << "Invalid,try Again." << endl;
     cin >> temp1;
@@ -715,6 +753,7 @@ void billsManage()
 {
   for (int i = 0; i < index3; i++)
   {
+  color1(3);
     cout << buy[i] << "\t"
          << "\t" << buyQuantity[i] << "\t" << buyPrice[i] << "\t"
          << "Employe" << endl;
@@ -730,6 +769,7 @@ void billsManage()
        << endl;
   for (int i = 0; i < totalCount; i++)
   {
+  color1(1);
     cout << "Day " << i + 1 << "\t\t"
          << "Total\t" << totals[i] << " Rs" << endl;
   }
@@ -741,6 +781,7 @@ void chkAttendence()
     if (roles[i] == "Employe")
     {
       gotoxy(15, 18 + i);
+  color1(5);
       cout << username[i] << "\t\t " << attendence[i] << endl;
       // storeAttendence();
     }
@@ -761,6 +802,7 @@ void requestMedicine()
 {
   string name;
   bool check = true;
+  color1(4);
   cout << "Enter the name of medicine : ";
   cin >> name;
 
@@ -770,6 +812,7 @@ void requestMedicine()
     if (name == medicine[i])
     {
       check = true;
+  color1(2);
       cout << "....This medicine is available..... " << endl;
       cout << i + 1 << "."
            << "\t" << medicine[i] << "\t\t" << quantity[i] << endl;
@@ -783,6 +826,7 @@ void requestMedicine()
   }
   if (check == false)
   {
+    color1(2);
     cout << "....This meidicine is not available in your Pharmacy....... " << endl;
     cout << "....Please ask the Admin to order this medicine...." << endl;
   }
@@ -794,6 +838,7 @@ void billForCustomer()
   total = 0;
   for (int i = 0; i < index4; i++)
   {
+  color1(2);
     cout << "Enter the price of  which customer want to bought :  ";
     cin >> temp;
     while (!(validation(temp)))
@@ -809,6 +854,7 @@ void billForCustomer()
     buyPrice[i] = buyQuantity[i] * cost[i];
     total = total + buyPrice[i];
   }
+  color1(9);
   cout << "Your total bill is = " << total << endl;
   totals[totalCount] = total;
   totalCount++;
@@ -819,11 +865,13 @@ void dailyReport()
 {
   for (int i = 0; i < index3; i++)
   {
+  color1(7);
     cout << buy[i] << "\t"
          << "\t" << buyQuantity[i] << "\t" << buyPrice[i] << "\t"
          << "Employe" << endl;
   }
   cout << endl;
+  color1(8);
   cout << "The total amount you earn today is :  " << total << endl;
 
   // storeTotal();
@@ -839,6 +887,7 @@ void aboutPharmacy()
   storeFeedback();
   index2++;
   cout << endl;
+  color1(3);
   cout << ".............Thank you for your feedback  (Jazakallah)!................" << endl;
 }
 void enterMedicine()
@@ -846,8 +895,10 @@ void enterMedicine()
 
   string temp;
   int values;
+  color1(4);
   cout << "Enter the medicine you want to buy : ";
   cin >> buy[index3];
+  color1(9);
   cout << "Enter the quantity : ";
   cin >> temp;
   while (!(validation(temp)))
@@ -863,8 +914,10 @@ void enterMedicine()
 }
 void chkbill()
 {
+  color1(7);
   cout << "your total bill is " << total << endl;
   cout << endl;
+  color1(6);
   cout << "................ThankYou for coming here............. " << endl;
   cout << endl;
 }
@@ -874,10 +927,13 @@ void changePassword()
   string name;
   string newPass;
   int flag;
+  color1(7);
   cout << "Enter the username :";
   cin >> name;
+  color1(6);
   cout << "Enter the prevous password : ";
   cin >> pass;
+  color1(3);
   cout << "Enter the new password : ";
   cin >> newPass;
 
@@ -888,6 +944,7 @@ void changePassword()
       flag = 1;
 
       passwards[i] = newPass;
+  color1(9);
       cout << "Password Changed Successfully." << endl;
       storeData();
       break;
@@ -902,6 +959,7 @@ void changePassword()
 
   if (flag == 0)
   {
+  color1(1);
     cout << "Please Enter the correct previous password." << endl;
   }
 }
@@ -1051,6 +1109,7 @@ int navigation(int navig)
   while (true)
   {
     gotoxy(navX, navY);
+    color1(9);
     cout << "=>";
     gotoxy(20, 20);
     if (GetAsyncKeyState(VK_DOWN))
@@ -1062,6 +1121,7 @@ int navigation(int navig)
         cout << "  ";
         navY = navY + 1;
         gotoxy(navX, navY);
+        color1(9);
         cout << "=>";
       }
     }
@@ -1074,6 +1134,7 @@ int navigation(int navig)
         cout << "  ";
         navY = navY - 1;
         gotoxy(navX, navY);
+        color1(9);
         cout << "=>";
       }
     }
@@ -1185,7 +1246,7 @@ bool stringValidation(string temp1)
 {
   for (int z = 0; z < temp1.length(); z++)
   {
-    if (temp1[z] == '0' || temp1[z] == '1' || temp1[z] == '2' || temp1[z] == '3' || temp1[z] == '4' || temp1[z] == '5'|| temp1[z] == '6' || temp1[z] == '7' ||temp1[z] == '8' ||temp1[z] == '9')
+    if (temp1[z] == '0' || temp1[z] == '1' || temp1[z] == '2' || temp1[z] == '3' || temp1[z] == '4' || temp1[z] == '5' || temp1[z] == '6' || temp1[z] == '7' || temp1[z] == '8' || temp1[z] == '9')
     {
       return false;
     }
